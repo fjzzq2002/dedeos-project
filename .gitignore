@@ -130,3 +130,6 @@ dmypy.json
 
 # Dataset file
 data/*.json
+
+# Model save files
+save/*.file
