@@ -13,7 +13,7 @@ def stop(limit = 1, times = [0]):
 
 class Tokenizer(object):
 
-    def __init__(self, docs, PARAGRAPH_LENGTH=128, UNK_THRESHOLD=10) -> None:
+    def __init__(self, docs, PARAGRAPH_LENGTH=128, UNK_THRESHOLD=20) -> None:
         
         super().__init__()
 
@@ -160,17 +160,19 @@ class GenderDataset(data.Dataset):
         print(f"Counting freqeuncies of words...")
         freq = Counter() # Count the number of times each word appears
         doc_texts_token = [] # This is a list of lists of tokens
-        for doc_text in tqdm(doc_texts):
+        new_gender_label = []
+        for doc_text, label in tqdm(zip(doc_texts, gender_label)):
             if len(doc_text.split()) <= PARAGRAPH_LENGTH:
                 doc_text_token = doc_text.split()
                 freq.update(doc_text_token)
                 doc_texts_token.append(doc_text_token)
+                new_gender_label.append(label)
         
         print(f"Number of documents with lengths <= {PARAGRAPH_LENGTH}: {len(doc_texts_token)}")
         
         self.raw_text = doc_texts # list of strings of close to PARAGRAPH_LENGTH words
         self.data = [[tokenizer.token2idx(token) for token in doc] for doc in doc_texts_token]
-        self.label = gender_label
+        self.label = new_gender_label
     
     def __len__(self):
         return len(self.data)

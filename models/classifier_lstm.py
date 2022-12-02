@@ -4,7 +4,7 @@ from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 
 class ClassifierLSTM(nn.Module):
 
-    def __init__(self, vocab_size, embedding_size, hidden_size, num_layers, is_bidirectional):
+    def __init__(self, vocab_size, embedding_size, hidden_size, num_layers, is_bidirectional, dropout):
         super().__init__()
         self.vocab_size = vocab_size
         self.embedding_size = embedding_size
@@ -20,11 +20,23 @@ class ClassifierLSTM(nn.Module):
             input_size = self.embedding_size,
             hidden_size = self.hidden_size,
             num_layers = self.num_layers,
-            dropout=0.2,
+            dropout=dropout,
             bidirectional=self.is_bidirectional,
             batch_first=True
         )
-        self.linear = nn.Linear(self.hidden_size * self.num_layers * 2 * (2 if self.is_bidirectional else 1), 2)
+        self.ff = nn.Sequential(
+            nn.Dropout(dropout),
+            nn.Linear(
+                self.hidden_size * self.num_layers * 2 * (2 if self.is_bidirectional else 1), 
+                self.hidden_size
+            ),
+            nn.Dropout(dropout),
+            nn.ReLU(),
+            nn.Linear(
+                self.hidden_size,
+                2
+            )
+        )
 
     def forward(self, src_ids, src_len):
         embed = self.embedding(src_ids)
@@ -34,5 +46,5 @@ class ClassifierLSTM(nn.Module):
             hidden.permute(1, 0, 2).contiguous().view(hidden.size(1), -1), 
             cell.permute(1, 0, 2).contiguous().view(cell.size(1), -1)
             ], dim=1)
-        logits = self.linear(output)
+        logits = self.ff(output)
         return logits
