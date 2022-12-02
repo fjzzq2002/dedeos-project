@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Dataset file
+data/*.json
+data/*.pickle
+
+# Model save files
+save/*.file
