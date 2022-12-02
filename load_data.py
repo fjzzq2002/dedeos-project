@@ -98,7 +98,7 @@ class GenderDataset(data.Dataset):
     def str2token(self, s: str):
         return tokenizer.convert_ids_to_tokens(self.str2idx(s))
     
-    def token2idx(self, tokens : list[str]):
+    def token2idx(self, tokens: list):
         return tokenizer.convert_tokens_to_ids(tokens)
     
     def idx2str(self, idx):

@@ -130,6 +130,7 @@ dmypy.json
 
 # Dataset file
 data/*.json
+data/*.pickle
 
 # Model save files
 save/*.file
