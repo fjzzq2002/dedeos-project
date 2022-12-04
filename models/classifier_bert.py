@@ -22,7 +22,7 @@ class WeightedSumEmbeddingsClassifer(nn.Module):
 
 class ClassifierBERT(nn.Module):
 
-    def __init__(self, vocab_size, dropout):
+    def __init__(self, vocab_size, dropout=0.2):
         super().__init__()
 
         self.vocab_size = vocab_size
