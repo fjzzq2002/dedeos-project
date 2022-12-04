@@ -10,14 +10,14 @@ class WeightedSumEmbeddingsClassifer(nn.Module):
         self.vocab_size = vocab_size
         self.hidden_size = hidden_size
         self.padding_idx = padding_idx
-        self.embeddings_weight = torch.normal(0, 1, size=(self.vocab_size, self.hidden_size))
+        self.embeddings = nn.Embedding(self.vocab_size, self.hidden_size, self.padding_idx)
     
     def forward(self, src_ids):
         '''
         Input shape: (batch_size, sequence_length, vocab_size) after softmax!!!
         Output shape: (batch_size, sequence_length, hidden_size)
         '''
-        return torch.matmul(src_ids, self.embeddings_weight)
+        return torch.matmul(src_ids, self.embeddings.weight)
         
 
 class ClassifierBERT(nn.Module):
@@ -26,15 +26,13 @@ class ClassifierBERT(nn.Module):
         super().__init__()
 
         self.vocab_size = vocab_size
-        self.config = DistilBertConfig(
+        self.config = DistilBertConfig.from_pretrained(
+            'distilbert-base-uncased',
             vocab_size=vocab_size,
             seq_classif_dropout=dropout
         )
 
-        self.BERT = DistilBertForSequenceClassification(self.config).from_pretrained(
-            'distilbert-base-uncased',
-            num_labels=2
-        )
+        self.BERT = DistilBertForSequenceClassification(self.config)
         self.embeddings = WeightedSumEmbeddingsClassifer(self.vocab_size)
     
     def forward(self, src_ids):
