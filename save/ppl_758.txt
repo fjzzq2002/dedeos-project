@@ -1,0 +1,1 @@
+Epoch 0, total 22466 batches
