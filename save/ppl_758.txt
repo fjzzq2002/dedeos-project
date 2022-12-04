@@ -1,1 +1,3 @@
 Epoch 0, total 22466 batches
+Epoch Step: 0 Loss: 4.159355163574219
+Validation Perplexity: 82.65601790337207
