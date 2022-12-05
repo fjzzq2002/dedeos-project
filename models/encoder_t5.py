@@ -16,12 +16,13 @@ class EncoderT5(nn.Module):
         super().__init__()
 
         self.vocab_size = vocab_size
-        self.config = T5Config(
+        self.config = T5Config.from_pretrained(
+            'google/t5-v1_1-small',
             vocab_size=vocab_size,
             feed_forward_proj='gated-gelu'
         )
 
-        self.T5 = T5EncoderModel(self.config).from_pretrained('google/t5-v1_1-small')
+        self.T5 = T5EncoderModel(self.config)
         self.ff = nn.Sequential( # Using sequential to leave space for expansion
             nn.Linear(512, self.vocab_size)
         )

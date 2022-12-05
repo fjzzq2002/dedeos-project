@@ -1,0 +1,9 @@
+Epoch 0, total 1756 batches
+Epoch Step: 0 Loss: 0.721867024898529 Acc: 0.45703125
+Validation Accuracy: 0.54546875
+Epoch Step: 300 Loss: 0.642002284526825 Acc: 0.625
+Epoch Step: 600 Loss: 0.6223012208938599 Acc: 0.65234375
+Epoch Step: 900 Loss: 0.6958179473876953 Acc: 0.52734375
+Epoch Step: 1200 Loss: 0.6912516355514526 Acc: 0.5234375
+Epoch Step: 1500 Loss: 0.6963798999786377 Acc: 0.5078125
+Validation Accuracy: 0.5463020833333333

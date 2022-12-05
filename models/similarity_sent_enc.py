@@ -27,9 +27,10 @@ def encode_for_similarities(st_model, device, src_ids, rst_logits):
     # normalize with torch.nn.functional.normalize
     src_encode = torch.nn.functional.normalize(src_encode, p=2, dim=1)
     tgt_encode = torch.nn.functional.normalize(tgt_encode, p=2, dim=1)
+    result = torch.sum(src_encode * tgt_encode, dim=1)
     #print(src_encode.shape, tgt_encode.shape)
     #print(src_encode-tgt_encode)
     # print(result.shape)
     # print(result)
 
-    return src_encode, tgt_encode
+    return result
