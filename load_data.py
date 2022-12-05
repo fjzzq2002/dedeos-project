@@ -2,9 +2,9 @@ import torch
 from torch.utils import data
 from collections import Counter
 from tqdm import tqdm
-from sentence_transformers import CrossEncoder
+from sentence_transformers import SentenceTransformer
 
-tokenizer = CrossEncoder('cross-encoder/stsb-TinyBERT-L-4').tokenizer
+tokenizer = SentenceTransformer('all-mpnet-base-v2').tokenizer
 
 # Took me 5 min to run
 
@@ -98,7 +98,7 @@ class GenderDataset(data.Dataset):
     def str2token(self, s: str):
         return tokenizer.convert_ids_to_tokens(self.str2idx(s))
     
-    def token2idx(self, tokens : list[str]):
+    def token2idx(self, tokens: list):
         return tokenizer.convert_tokens_to_ids(tokens)
     
     def idx2str(self, idx):
