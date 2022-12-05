@@ -7,3 +7,24 @@ Epoch Step: 1000 Loss: 3.608837127685547
 Validation Perplexity: 41.9846957232806
 Epoch Step: 1500 Loss: 3.4560418128967285
 Validation Perplexity: 41.729391047923286
+Epoch Step: 2000 Loss: 3.4894630908966064
+Validation Perplexity: 41.85878978119896
+Epoch Step: 2500 Loss: 3.5053517818450928
+Validation Perplexity: 41.834864789329835
+Epoch Step: 3000 Loss: 3.4862048625946045
+Validation Perplexity: 41.396467571288575
+Epoch Step: 3500 Loss: 3.4463441371917725
+Validation Perplexity: 41.03562468470698
+Epoch 1, total 3511 batches
+Epoch Step: 0 Loss: 3.426588773727417
+Validation Perplexity: 41.26631378249719
+Epoch Step: 500 Loss: 3.306133270263672
+Validation Perplexity: 41.76765277310848
+Epoch Step: 1000 Loss: 3.3581769466400146
+Validation Perplexity: 41.757317456610686
+Epoch Step: 1500 Loss: 3.3428263664245605
+Validation Perplexity: 41.2817830482799
+Epoch Step: 2000 Loss: 3.4371254444122314
+Validation Perplexity: 41.21160779452431
+Epoch Step: 2500 Loss: 3.442338466644287
+Validation Perplexity: 40.90719059254035

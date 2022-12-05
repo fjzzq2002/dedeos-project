@@ -1,0 +1,5 @@
+Epoch 0, total 14042 batches
+Epoch Step: 0 Sim Loss: 0.8519104719161987 Class Loss: 1.0731971263885498 PPL Loss: 15.138219833374023
+Validation Accuracy: 0.4653125
+Validation Perplexity: 4227079.571668542
+Validation Semantic Similarity: 0.150627002120018
